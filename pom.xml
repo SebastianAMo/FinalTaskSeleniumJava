@@ -24,9 +24,16 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter</artifactId>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
                 <version>5.11.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-bom</artifactId>
+                <version>3.27.3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -51,6 +58,7 @@
             <artifactId>cucumber-java</artifactId>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit-platform-engine</artifactId>
@@ -64,22 +72,17 @@
         </dependency>
 
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
             <scope>test</scope>
         </dependency>
+
 
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
             <version>2.2</version>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>2.0.9</version>
         </dependency>
 
         <dependency>
@@ -104,21 +107,23 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.2</version>
-
+                <!-- Using file junit-platform.properties to configure the parallel execution
                 <configuration>
                     <includes>
                         <include>**/RunCucumberTest.java</include>
                     </includes>
                     <properties>
                         <configurationParameters>
-                            cucumber.junit-platform.naming-strategy=long,
-                            cucumber.execution.parallel.enabled=true,
-                            cucumber.execution.parallel.config.strategy=fixed,
-                            cucumber.execution.parallel.config.fixed.parallelism=2,
-                            cucumber.execution.parallel.config.fixed.max-pool-size=2
+                            cucumber.junit-platform.naming-strategy=long
+                            cucumber.execution.parallel.enabled=true
+                            cucumber.execution.parallel.config.strategy=fixed
+                            cucumber.execution.parallel.config.fixed.parallelism=4
+                            cucumber.execution.parallel.config.fixed.max-pool-size=4
                         </configurationParameters>
+
                     </properties>
                 </configuration>
+               -->
             </plugin>
         </plugins>
     </build>

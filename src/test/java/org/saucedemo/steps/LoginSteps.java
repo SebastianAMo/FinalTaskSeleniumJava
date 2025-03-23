@@ -25,15 +25,12 @@ public class LoginSteps {
 
     @Before
     public void setUp() {
-        String browser = System.getProperty("browser", "edge");
-        DriverFactory.initDriver(browser);
+        DriverFactory.initDriver();
         driver = DriverFactory.getDriver();
-        logger.info("Starting browser with driver: {}", browser);
     }
 
     @After
     public void tearDown() {
-        logger.info("Closing browser");
         DriverFactory.quitDriver();
     }
 
@@ -80,7 +77,6 @@ public class LoginSteps {
 
     @Then("I should see the title {string}")
     public void i_should_see_the_title(String string) {
-
         DashboardPage dashboardPage = new DashboardPage(driver);
         String title = dashboardPage.getTitle();
         logger.info("Page title: {}", title);

@@ -20,7 +20,6 @@ Currently, the project supports the following browsers:
 
 ## Task description
 
-
 Launch URL: https://www.saucedemo.com/
 
 **UC-1** Test Login form with empty credentials:
@@ -48,6 +47,38 @@ Launch URL: https://www.saucedemo.com/
 
   I add two methods the first use `SendKeys(Keys.Control + "a")` method to select all the text in the input and then the `SendKeys(Keys.Delete)` method to delete the text. Other one approach to clearing the fields is to simulate deleting the text character by character.  Using this approach the tests passed.
 
+
+
+## How to run the tests
+
+- To run all tests with default values, execute the following command:
+
+  ```bash
+  mvn clean test
+  ```
+
+- Run tests with specific browser:
+
+  ```bash
+  mvn clean test -Dbrowser=firefox
+  ```
+    
+  ```bash
+  mvn clean test -Dbrowser=edge
+  ```
+  
+- Run tests with specific browser and headless mode:
+S
+  ```bash
+    mvn clean test -Dbrowser=firefox -Dheadless=true
+    ```
+- Run tests with specific browser and specific tags:
+
+  This is for Windows OS
+  ```bash
+  mvn clean test "-Dcucumber.filter.tags=@smoke"
+  ```
+  
 
 
 ## Author
