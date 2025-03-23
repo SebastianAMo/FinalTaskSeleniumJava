@@ -78,6 +78,10 @@ S
   ```bash
   mvn clean test "-Dcucumber.filter.tags=@smoke"
   ```
+
+  ```bash
+  mvn clean test "-Dcucumber.filter.tags=@UC-2"
+  ```
   
 
 

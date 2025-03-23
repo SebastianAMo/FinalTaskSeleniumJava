@@ -7,6 +7,7 @@ Feature: Login functionality on SauceDemo
   Background:
     Given I navigate to the login page
 
+  @UC-1
   @smoke
   Scenario: UC-1 - Invalid login with empty credentials
     When I enter username "random_username" and password "random_password"
@@ -15,12 +16,14 @@ Feature: Login functionality on SauceDemo
     And I click the login button
     Then I should see the error message "Epic sadface: Username is required"
 
+  @UC-2
   Scenario: UC-2 - Invalid login with credentials by passing Username
     When I enter username "standard_user" and password "random_password"
     And I clear the password field
     And I click the login button
     Then I should see the error message "Epic sadface: Password is required"
 
+  @UC-3
   Scenario: UC-3 - Valid login
     When I enter username "standard_user" and password "secret_sauce"
     And I click the login button
