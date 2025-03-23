@@ -30,7 +30,10 @@ public class LoginSteps {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown(io.cucumber.java.Scenario scenario) {
+        if (scenario.isFailed()) {
+            logger.error("Scenario failed: {}", scenario.getName());
+        }
         DriverFactory.quitDriver();
     }
 

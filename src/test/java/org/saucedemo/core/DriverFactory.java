@@ -10,11 +10,11 @@ import org.slf4j.LoggerFactory;
 
 
 public class DriverFactory {
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     private static final Logger logger = LoggerFactory.getLogger(DriverFactory.class);
 
     public static void initDriver() {
-        boolean headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
+        boolean headless = Boolean.parseBoolean(System.getProperty("headless", "true"));
         String browser = System.getProperty("browser", "edge");
         if (driver.get() == null) {
             switch (browser.toLowerCase()) {
