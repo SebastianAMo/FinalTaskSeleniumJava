@@ -4,13 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class DashboardPage {
+public class DashboardPage extends BasePage {
 
-    private final WebDriver driver;
     private static final By title = By.xpath("//div[@class='app_logo']");
 
     public DashboardPage(WebDriver driver) {
-        this.driver = driver;
+      super(driver);
     }
 
     public String getTitle() {
