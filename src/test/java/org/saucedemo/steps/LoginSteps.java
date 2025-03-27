@@ -46,8 +46,7 @@ public class LoginSteps {
     }
 
     @When("I enter username {string} and password {string}")
-    public void iEnterUsernameAndPassword(String username, String password) throws InterruptedException {
-        Thread.sleep(2000);
+    public void iEnterUsernameAndPassword(String username, String password) {
         loginPage.enterUsername(username);
         loginPage.enterPassword(password);
         logger.info("Using username: {} and password: {}", username, password);
