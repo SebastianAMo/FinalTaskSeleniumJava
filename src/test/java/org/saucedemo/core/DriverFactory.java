@@ -13,35 +13,40 @@ public class DriverFactory {
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     private static final Logger logger = LoggerFactory.getLogger(DriverFactory.class);
 
-    public static void initDriver() {
-        boolean headless = Boolean.parseBoolean(System.getProperty("headless", "true"));
-        String browser = System.getProperty("browser", "edge");
+    private static void initFirefoxDriver(boolean headless) {
+        var Options = new FirefoxOptions();
+        if (headless) {
+            Options.addArguments("--headless");
+            Options.addArguments("--disable-gpu");
+        }
+
+        WebDriverManager.firefoxdriver().setup();
+        driver.set(new FirefoxDriver(Options));
+    }
+
+    private static void initEdgeDriver(boolean headless) {
+        var Options = new EdgeOptions();
+        if (headless) {
+            Options.addArguments("--headless");
+            Options.addArguments("--disable-gpu");
+        }
+        WebDriverManager.edgedriver().setup();
+        driver.set(new EdgeDriver(Options));
+    }
+
+    public static void initDriver(boolean headless, String browser) {
         if (driver.get() == null) {
             switch (browser.toLowerCase()) {
                 case "firefox" -> {
-                    var Options = new FirefoxOptions();
-                    if (headless) {
-                        Options.addArguments("--headless");
-                        Options.addArguments("--disable-gpu");
-                    }
-
-                    WebDriverManager.firefoxdriver().setup();
-                    driver.set(new FirefoxDriver(Options));
+                    initFirefoxDriver(headless);
                 }
                 case "edge" -> {
-                    var Options = new EdgeOptions();
-                    if (headless) {
-                        Options.addArguments("--headless");
-                        Options.addArguments("--disable-gpu");
-                    }
-                    WebDriverManager.edgedriver().setup();
-                    driver.set(new EdgeDriver(Options));
+                    initEdgeDriver(headless);
                 }
                 default -> throw new IllegalArgumentException("Unsupported browser: " + browser);
             }
             driver.get().manage().window().maximize();
             logger.info("Driver initialized for thread: {} and browser: {}", Thread.currentThread().getId(), browser);
-
         }
     }
 

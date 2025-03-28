@@ -25,7 +25,9 @@ public class LoginSteps {
 
     @Before
     public void setUp() {
-        DriverFactory.initDriver();
+        boolean headless = Boolean.parseBoolean(System.getProperty("headless", "true"));
+        String browser = System.getProperty("browser", "edge");
+        DriverFactory.initDriver(headless, browser);
         driver = DriverFactory.getDriver();
     }
 
